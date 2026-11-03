@@ -1,5 +1,6 @@
 import json
 from enum import Enum
+from logging import CRITICAL
 import os
 from dotenv import load_dotenv
 from typing import Optional
@@ -78,6 +79,8 @@ response = client.chat.completions.create(
 msg = response.choices[0].message
 messages.append(msg)
 
+print(msg)
+
 if msg.tool_calls:
     for tool_call in msg.tool_calls:
         if tool_call.function.name == "create_ticket":
@@ -99,4 +102,7 @@ if msg.tool_calls:
 
     final = client.chat.completions.create(model="gemini-3.1-flash-lite", messages=messages)
     print(final.choices[0].message.content)
+
+# ChatCompletionMessage(content=None, refusal=None, role='assistant', annotations=None, audio=None, function_call=None, tool_calls=[ChatCompletionMessageFunctionToolCall(id='call_9176', function=Function(arguments='{"title":"Production server outage","priority":"critical","assignee":"Infrastructure","description":"Production server is down, preventing all user logins."}', name='create_ticket'), type='function', extra_content={'google': {'thought_signature': 'EnMKcQFpFH0TbFZKMrFsCkPVW+7+0eBcyzuFn7j6cM/DbZ2+Oe5elfz/Q1o8udaifsQ+zPw2tuVKROzY2YSWVH/ij6HNmqUhJysrBWlJaMWEWtoiCowwtI8C578hX8at6Jnk5ESziw3OO6CCZzneJHMVTzKv'}})])
+# Ticket 42 has been created with CRITICAL priority and assigned to Infrastructure.
 

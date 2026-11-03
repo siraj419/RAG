@@ -59,14 +59,20 @@ print(msg)
 if msg.tool_calls:
     for call in msg.tool_calls:
         args = json.loads(call.function.arguments)
-        result = get_weather(**args)
-        messages.append({
-            "role": "tool",
-            "tool_call_id": call.id,
-            "content": result
-        })
+        if call.function.name == "get_weather":
+            result = get_weather(**args)
+            messages.append({
+                "role": "tool",
+                "tool_call_id": call.id,
+                "content": result
+            })
 
     final = client.chat.completions.create(model="gemma-4-31b-it", messages=messages, tools=tools)
     print(final.choices[0].message.content)
 else:
     print(msg.content)
+    
+
+# ChatCompletionMessage(content='<thought>The user is asking about the weather in Tokyo. 
+# I should look for a tool that can provide weather information. The `get_weather` tool takes a `city` parameter and an optional `unit` parameter. In this caseThe user is asking about the weather in Tokyo. I should look for a tool that can provide weather information. The `get_weather` tool takes a `city` parameter and an optional `unit` parameter. In this case, the city is "Tokyo". I will call the `get_weather` tool with `city=\'Tokyo\'`.</thought>', refusal=None, role='assistant', annotations=None, audio=None, function_call=None, tool_calls=[ChatCompletionMessageFunctionToolCall(id='call_1006147', function=Function(arguments='{"city":"Tokyo"}', name='get_weather'), type='function', extra_content={'google': {'thought_signature': 'EiYKJGUyNDgzMGE3LTVjZDYtNDJmZS05OThiLWVlNTM5ZTcyYjljMw=='}})], extra_content={'google': {'thought': True}})
+# The current weather in Tokyo is sunny with a temperature of 40°C.
