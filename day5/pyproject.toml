@@ -1,0 +1,19 @@
+[project]
+name = "day5"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "siraj419", email = "sirajshabbir321@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "dotenv>=0.9.9",
+    "grandalf>=0.8",
+    "langchain>=1.4.9",
+    "langchain-google-genai>=4.4.3",
+    "requests>=2.34.2",
+]
+
+[project.scripts]
+day5 = "day5:main"
