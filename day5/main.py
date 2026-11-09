@@ -10,6 +10,8 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnableLambda, RunnablePassthrough
 from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_core.embeddings import Embeddings
+
 
 model = ChatGoogleGenerativeAI(
     model="gemini-3.1-flash-lite",
@@ -154,5 +156,5 @@ if __name__ == "__main__":
     print("Saved to:", result["path"])
     print(result["markdown"])
     
-# Workflow Vs Agent
-# wikipedia search in langchain
+    # Workflow Vs Agent
+    # wikipedia search in langchain

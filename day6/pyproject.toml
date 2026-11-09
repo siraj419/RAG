@@ -1,0 +1,20 @@
+[project]
+name = "day6"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "siraj419", email = "sirajshabbir321@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "dotenv>=0.9.9",
+    "langchain>=1.4.9",
+    "langchain-google-genai>=4.4.3",
+    "langchain-qdrant>=1.1.0",
+    "numpy>=2.5.4",
+    "qdrant-client>=1.20.0",
+]
+
+[project.scripts]
+day6 = "day6:main"
