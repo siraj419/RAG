@@ -1,0 +1,22 @@
+[project]
+name = "day8"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "siraj419", email = "sirajshabbir321@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "fastembed>=0.9.1",
+    "langchain-core>=1.8.0",
+    "langchain-google-genai>=4.5.0",
+    "langchain-qdrant>=1.1.0",
+    "pydantic>=2.14.3",
+    "python-dotenv>=1.2.4",
+    "qdrant-client>=1.20.0",
+    "sentence-transformers>=6.3.0",
+]
+
+[project.scripts]
+day8 = "day8:main"
