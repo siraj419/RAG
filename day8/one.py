@@ -158,7 +158,12 @@ answer_prompt = ChatPromptTemplate.from_messages([
 ])
 answer_chain = answer_prompt | llm | StrOutputParser()
 
-q = "Why does my model do great on training data but badly on new data?"
-chunks = retrieve(q)
-context = "\n\n".join(f"[{d.metadata['source']}] {d.page_content}" for d in chunks)
-print(answer_chain.invoke({"context": context, "question": q}))
+def answer(question):
+    chunks = retrieve(question)
+    context = "\n\n".join(f"[{d.metadata['source']}] {d.page_content}" for d in chunks)
+    return answer_chain.invoke({"context": context, "question": question})
+
+# q = "Why does my model do great on training data but badly on new data?"
+# chunks = retrieve(q)
+# context = "\n\n".join(f"[{d.metadata['source']}] {d.page_content}" for d in chunks)
+# print(answer_chain.invoke({"context": context, "question": q}))

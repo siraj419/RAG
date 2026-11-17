@@ -1,0 +1,16 @@
+services:
+      redis:
+        image: redis:7.4
+        # command: ["redis-server", "--requirepass", "api"]
+        ports:
+          - "6379:6379"
+        volumes:
+          - api-redis:/data
+        healthcheck:
+          test: ["CMD", "redis-cli", "-a", "api", "--no-auth-warning", "ping"]
+          interval: 5s
+          timeout: 3s
+          retries: 10
+
+volumes:
+  api-redis:
